@@ -1,8 +1,12 @@
-from servolib import * 
-from pumplib import *
+#import os
+#import sys
+#sys.path.insert(0, os.getcwd())
 
-valve_controller = ValveController()
-pump_controller = PumpController()
+from servo import servolib
+from pump import pumplib
+
+valve_controller = servolib.ValveController()
+pump_controller = pumplib.PumpController()
 
 valve_controller.demo()
 pump_controller.demo()
