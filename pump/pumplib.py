@@ -5,8 +5,8 @@ class PumpController():
     def __init__(self):
         GPIO.setmode(GPIO.BCM) # GPIO Nummern statt Board Nummern
  
-        self.RELAIS_1_GPIO = 31
-        self.RELAIS_2_GPIO = 33
+        self.RELAIS_1_GPIO = 6
+        self.RELAIS_2_GPIO = 13
 
         GPIO.setup(self.RELAIS_1_GPIO, GPIO.OUT) # GPIO Modus zuweisen
         GPIO.setup(self.RELAIS_2_GPIO, GPIO.OUT)
