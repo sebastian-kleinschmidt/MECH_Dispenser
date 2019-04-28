@@ -13,7 +13,7 @@ class ScaleController:
     def __init__(self, dout, pd_sck, gain=128):
         self.PD_SCK = pd_sck
         self.DOUT = dout
-
+	GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.PD_SCK, GPIO.OUT)
         GPIO.setup(self.DOUT, GPIO.IN)
 
@@ -110,25 +110,21 @@ class ScaleController:
     def power_up(self):
         GPIO.output(self.PD_SCK, False)
 
-
 def demo():
-    import time
-    import sys
+	print('test')
+	import time
+	import sys
 
-    hx = ScaleController(5, 6)
-    hx.set_reading_format("MSB", "MSB")
-    hx.set_reference_unit(1)
+	hx = ScaleController(5, 6)
+	hx.set_reading_format("MSB", "MSB")
+	hx.set_reference_unit(1)
 
-    hx.reset()
-    hx.tare()
+	hx.reset()
+	hx.tare()
 
-    while True:
-        try:
-            val = hx.get_weight(5)
-            print val
-            
-            hx.power_down()
-            hx.power_up()
-            time.sleep(0.1)
-
-    GPIO.cleanup()
+	while True:
+		val = hx.get_weight(5)
+		print val
+		hx.power_down()
+		hx.power_up()
+		time.sleep(0.1)
