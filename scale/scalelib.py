@@ -9,7 +9,7 @@ def createBoolList(size=8):
     return ret
 
 
-class HX711:
+class ScaleController:
     def __init__(self, dout, pd_sck, gain=128):
         self.PD_SCK = pd_sck
         self.DOUT = dout
@@ -109,3 +109,26 @@ class HX711:
 
     def power_up(self):
         GPIO.output(self.PD_SCK, False)
+
+
+def demo():
+    import time
+    import sys
+
+    hx = ScaleController(5, 6)
+    hx.set_reading_format("MSB", "MSB")
+    hx.set_reference_unit(1)
+
+    hx.reset()
+    hx.tare()
+
+    while True:
+        try:
+            val = hx.get_weight(5)
+            print val
+            
+            hx.power_down()
+            hx.power_up()
+            time.sleep(0.1)
+
+    GPIO.cleanup()
